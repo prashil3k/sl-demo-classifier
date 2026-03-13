@@ -1,0 +1,5 @@
+# Ensure shell scripts always keep Unix line endings (LF)
+# This prevents macOS from failing to run .command/.sh files
+# after downloading from GitHub
+*.command text eol=lf
+*.sh text eol=lf

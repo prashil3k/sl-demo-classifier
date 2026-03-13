@@ -29,15 +29,23 @@ pip install -r requirements.txt -q
 echo "🌐 Installing browser for Playwright (this may take a minute)..."
 python3 -m playwright install chromium
 
+# Make the Start Classifier.command file runnable on macOS
+# (ZIP downloads from GitHub strip executable permissions and add quarantine)
+chmod +x "Start Classifier.command" 2>/dev/null
+xattr -d com.apple.quarantine "Start Classifier.command" 2>/dev/null
+
 echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "To run the tool:"
-echo "  source venv/bin/activate"
-echo "  export ANTHROPIC_API_KEY=your-api-key-here"
-echo "  python3 run.py"
+echo "  Double-click 'Start Classifier.command'"
+echo "  (Your API key will be entered in the browser UI)"
 echo ""
-echo "Options:"
+echo "Or from the terminal:"
+echo "  source venv/bin/activate"
+echo "  python3 app.py"
+echo ""
+echo "Options (terminal only):"
 echo "  python3 run.py --limit 5        # Process only first 5 demos"
 echo "  python3 run.py --headed          # See the browser while it works"
 echo "  python3 run.py --scrape-only     # Just get the list of demo URLs"
