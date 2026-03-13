@@ -35,6 +35,88 @@ CUSTOM_RUBRICS_DIR = Path(__file__).parent / "rubrics"
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
+# ---------------------------------------------------------------------------
+# Model future-proofing: known models, runtime detection, fallback chain
+# ---------------------------------------------------------------------------
+
+# Known models (newest first) — update this list when new models are released
+KNOWN_MODELS = {
+    "haiku": [
+        {"id": "claude-haiku-4-5-20251001", "label": "Claude Haiku 4.5"},
+    ],
+    "sonnet": [
+        {"id": "claude-sonnet-4-6-20250627", "label": "Claude Sonnet 4.6"},
+        {"id": "claude-sonnet-4-20250514", "label": "Claude Sonnet 4"},
+    ],
+}
+
+# Fallback chains: if a model is deprecated, try these alternatives in order
+MODEL_FALLBACKS = {
+    "claude-haiku-4-5-20251001": [],
+    "claude-sonnet-4-6-20250627": ["claude-sonnet-4-20250514"],
+    "claude-sonnet-4-20250514": ["claude-sonnet-4-6-20250627"],
+}
+
+# Cache for detected models (populated at runtime)
+_detected_models = {"haiku": None, "sonnet": None}
+
+
+def detect_available_models(api_key: str) -> dict:
+    """Query the Anthropic API to discover available models. Returns dict of tier -> model_id."""
+    import anthropic
+    detected = {}
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.models.list(limit=100)
+        available_ids = {m.id for m in response.data}
+
+        for tier, models in KNOWN_MODELS.items():
+            for model in models:
+                if model["id"] in available_ids:
+                    detected[tier] = model["id"]
+                    break
+    except Exception as e:
+        print(f"   ⚠️  Could not detect models via API: {e}")
+
+    return detected
+
+
+def get_model(tier: str, api_key: str) -> str:
+    """Get the best available model for a tier (haiku/sonnet), with fallback."""
+    global _detected_models
+
+    # Try cached detection first
+    if _detected_models.get(tier):
+        return _detected_models[tier]
+
+    # Try runtime detection
+    if api_key:
+        detected = detect_available_models(api_key)
+        _detected_models.update(detected)
+        if tier in detected:
+            return detected[tier]
+
+    # Fall back to first known model for the tier
+    return KNOWN_MODELS[tier][0]["id"]
+
+
+def call_with_fallback(client, model_id: str, **kwargs):
+    """Call client.messages.create with automatic fallback on model deprecation errors."""
+    try:
+        return client.messages.create(model=model_id, **kwargs)
+    except Exception as e:
+        error_str = str(e).lower()
+        if "not found" in error_str or "deprecated" in error_str or "not available" in error_str:
+            fallbacks = MODEL_FALLBACKS.get(model_id, [])
+            for fb in fallbacks:
+                print(f"   ⚠️  Model {model_id} unavailable, trying {fb}...")
+                try:
+                    return client.messages.create(model=fb, **kwargs)
+                except Exception:
+                    continue
+        raise
+
+
 # Playwright settings
 HEADLESS = True
 VIEWPORT = {"width": 1440, "height": 900}
@@ -368,15 +450,16 @@ async def walk_demo(page, demo: DemoInfo, demo_index: int) -> DemoResult:
 # STEP 4: Classify demos using Claude API
 # ---------------------------------------------------------------------------
 
-def generate_rubric_from_doc(doc_text: str, output_path: Path = None) -> str:
+def generate_rubric_from_doc(doc_text: str, output_path: Path = None, api_key: str = None) -> str:
     """
     Use Sonnet to convert a raw framework document into a structured classification rubric.
     Returns the generated rubric text and saves it to output_path if provided.
     """
     import anthropic
 
-    if not ANTHROPIC_API_KEY:
-        raise ValueError("No ANTHROPIC_API_KEY set — cannot generate rubric")
+    effective_key = api_key or ANTHROPIC_API_KEY
+    if not effective_key:
+        raise ValueError("No API key provided — cannot generate rubric")
 
     print("   🧠 Generating classification rubric from uploaded document (using Sonnet)...")
 
@@ -426,9 +509,12 @@ Respond in JSON:
 {doc_text}
 """
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+    effective_key = api_key or ANTHROPIC_API_KEY
+    client = anthropic.Anthropic(api_key=effective_key)
+    model_id = get_model("sonnet", effective_key)
+    print(f"   Using model: {model_id}")
+    response = call_with_fallback(
+        client, model_id,
         max_tokens=3000,
         messages=[{"role": "user", "content": prompt}],
     )
@@ -482,7 +568,7 @@ Classify this interactive product demo into one of the following categories base
 """
 
 
-async def classify_demo(demo_result: DemoResult, mode: str = "fast", criteria_file: str = None) -> dict:
+async def classify_demo(demo_result: DemoResult, mode: str = "fast", criteria_file: str = None, api_key: str = None) -> dict:
     """
     Classify a demo using Claude.
 
@@ -493,7 +579,8 @@ async def classify_demo(demo_result: DemoResult, mode: str = "fast", criteria_fi
     """
     import anthropic
 
-    if not ANTHROPIC_API_KEY:
+    effective_key = api_key or ANTHROPIC_API_KEY
+    if not effective_key:
         return {"error": "No API key configured", "type": "unclassified"}
 
     if not demo_result.steps:
@@ -502,7 +589,8 @@ async def classify_demo(demo_result: DemoResult, mode: str = "fast", criteria_fi
     criteria = load_classification_criteria(criteria_file)
 
     use_screenshots = (mode == "full")
-    model = "claude-haiku-4-5-20251001" if mode in ("fast", "smart") else "claude-sonnet-4-20250514"
+    tier = "haiku" if mode in ("fast", "smart") else "sonnet"
+    model = get_model(tier, effective_key)
     model_label = "Haiku" if "haiku" in model else "Sonnet"
 
     # Build the message content
@@ -567,9 +655,9 @@ Below is the tooltip/guide text from each step of the demo ({len(demo_result.ste
     })
 
     try:
-        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-        response = client.messages.create(
-            model=model,
+        client = anthropic.Anthropic(api_key=effective_key)
+        response = call_with_fallback(
+            client, model,
             max_tokens=1500,
             messages=[{"role": "user", "content": content}],
         )
@@ -734,7 +822,12 @@ async def main():
                         help="Path to a custom classification rubric file (generated from uploaded framework doc)")
     parser.add_argument("--extra-urls", type=str, default=None,
                         help="Comma-separated list of additional demo URLs to process alongside the showcase demos")
+    parser.add_argument("--api-key", type=str, default=None,
+                        help="Anthropic API key (alternative to ANTHROPIC_API_KEY env var)")
     args = parser.parse_args()
+
+    # Resolve API key: CLI arg > env var
+    api_key = args.api_key or ANTHROPIC_API_KEY
 
     global HEADLESS
     if args.headed:
@@ -768,9 +861,9 @@ async def main():
             print(f"\n🎯 Processing single demo: {args.demo_url}")
             result = await walk_demo(page, demo, 0)
 
-            if not args.no_classify and ANTHROPIC_API_KEY:
+            if not args.no_classify and api_key:
                 print(f"\n🤖 Classifying demo...")
-                result.classification = await classify_demo(result, mode=args.mode, criteria_file=args.criteria_file)
+                result.classification = await classify_demo(result, mode=args.mode, criteria_file=args.criteria_file, api_key=api_key)
                 print(f"   Type: {result.classification.get('type', 'unknown')}")
                 print(f"   Score: {result.classification.get('score', 'N/A')}")
                 print(f"   Summary: {result.classification.get('summary', '')}")
@@ -831,63 +924,72 @@ async def main():
         accessible_demos = [d for d in demos if d.is_accessible and d.demo_iframe_url and not d.is_gated]
         print(f"\n   ✅ {len(accessible_demos)} accessible demos out of {len(demos)} total")
 
-        # Step 3: Walk through each demo
+        # Step 3: Walk through each demo + classify incrementally
+        # Results are saved after each demo so partial progress is preserved if stopped
         print(f"\n🚶 STEP 3: Walking through {len(accessible_demos)} demos...")
         results = []
-        for i, demo in enumerate(accessible_demos):
-            print(f"\n   [{i+1}/{len(accessible_demos)}] {demo.name}")
-            result = await walk_demo(page, demo, i)
-            results.append(result)
 
-        # Also add inaccessible/gated demos to results
+        # Add inaccessible/gated demos to results upfront
         for demo in demos:
             if not demo.is_accessible or demo.is_gated or not demo.demo_iframe_url:
-                results.append(DemoResult(info=demo))
+                r = DemoResult(info=demo)
+                if demo.is_gated:
+                    r.classification = {"type": "gated", "reason": "Demo requires form submission"}
+                else:
+                    r.classification = {"type": "inaccessible", "reason": demo.error}
+                results.append(r)
 
-        # Step 4: Classify using Claude
         mode = args.mode
         criteria_file = args.criteria_file
-        if not args.no_classify and ANTHROPIC_API_KEY:
-            classifiable = [r for r in results if r.steps]
+        do_classify = not args.no_classify and api_key
+
+        if do_classify:
             mode_label = {"fast": "Fast (Haiku, text-only)", "full": "Full (Sonnet, screenshots)", "smart": "Smart (Haiku first, Sonnet for top demos)"}
-            print(f"\n🤖 STEP 4: Classifying {len(classifiable)} demos with Claude...")
-            print(f"   Mode: {mode_label.get(mode, mode)}")
+            print(f"   Classification mode: {mode_label.get(mode, mode)}")
             if criteria_file:
                 print(f"   Using custom rubric: {Path(criteria_file).name}")
 
-            for i, result in enumerate(results):
-                if result.steps:
-                    print(f"   [{i+1}] Classifying {result.info.name}...", end=" ")
-                    result.classification = await classify_demo(result, mode=mode, criteria_file=criteria_file)
+        for i, demo in enumerate(accessible_demos):
+            print(f"\n   [{i+1}/{len(accessible_demos)}] {demo.name}")
+            result = await walk_demo(page, demo, i)
+
+            # Classify immediately after walking (if enabled)
+            if do_classify and result.steps:
+                print(f"   🤖 Classifying...", end=" ")
+                result.classification = await classify_demo(result, mode=mode, criteria_file=criteria_file, api_key=api_key)
+                cls_type = result.classification.get("type", "unknown")
+                score = result.classification.get("overall_score", result.classification.get("score", "?"))
+                print(f"→ {cls_type} (score: {score}/10)")
+
+            results.append(result)
+
+            # Save progress after each demo — partial results are preserved if stopped
+            print(f"   💾 Saving progress ({len(results)}/{len(accessible_demos) + len([d for d in demos if not d.is_accessible or d.is_gated or not d.demo_iframe_url])} total)...")
+            generate_report(results)
+
+        # Smart mode: re-classify top demos with Sonnet + screenshots
+        if do_classify and mode == "smart":
+            top_demos = [r for r in results if r.steps and r.classification.get("overall_score", 0) >= 6]
+            if top_demos:
+                print(f"\n   🔬 Smart mode: Re-classifying {len(top_demos)} top demos with Sonnet + screenshots...")
+                for i, result in enumerate(top_demos):
+                    print(f"   [{i+1}/{len(top_demos)}] Re-classifying {result.info.name}...", end=" ")
+                    result.classification = await classify_demo(result, mode="full", criteria_file=criteria_file, api_key=api_key)
                     cls_type = result.classification.get("type", "unknown")
                     score = result.classification.get("overall_score", result.classification.get("score", "?"))
                     print(f"→ {cls_type} (score: {score}/10)")
-                elif result.info.is_gated:
-                    result.classification = {"type": "gated", "reason": "Demo requires form submission"}
-                elif not result.info.is_accessible:
-                    result.classification = {"type": "inaccessible", "reason": result.info.error}
+                # Save updated classifications
+                generate_report(results)
+            else:
+                print(f"\n   ℹ️  No demos scored 6+ — skipping Sonnet re-classification")
 
-            # Smart mode: re-classify top demos with Sonnet + screenshots
-            if mode == "smart":
-                top_demos = [r for r in results if r.steps and r.classification.get("overall_score", 0) >= 6]
-                if top_demos:
-                    print(f"\n   🔬 Smart mode: Re-classifying {len(top_demos)} top demos with Sonnet + screenshots...")
-                    for i, result in enumerate(top_demos):
-                        print(f"   [{i+1}/{len(top_demos)}] Re-classifying {result.info.name}...", end=" ")
-                        result.classification = await classify_demo(result, mode="full", criteria_file=criteria_file)
-                        cls_type = result.classification.get("type", "unknown")
-                        score = result.classification.get("overall_score", result.classification.get("score", "?"))
-                        print(f"→ {cls_type} (score: {score}/10)")
-                else:
-                    print(f"\n   ℹ️  No demos scored 6+ — skipping Sonnet re-classification")
-        else:
-            if not ANTHROPIC_API_KEY:
-                print("\n⚠️  No ANTHROPIC_API_KEY set — skipping classification")
-                print("   Set it with: export ANTHROPIC_API_KEY=your-key-here")
+        if not do_classify:
+            if not api_key:
+                print("\n⚠️  No API key provided — skipping classification")
             print("   Skipping classification step")
 
-        # Step 5: Generate report
-        print(f"\n📝 STEP 5: Generating reports...")
+        # Final report
+        print(f"\n📝 Final report saved.")
         generate_report(results)
 
         await browser.close()

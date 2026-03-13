@@ -28,6 +28,7 @@ state = {
     "finished": False,
     "error": None,
     "active_rubric": None,  # Path to custom rubric being used
+    "api_key": "",  # Anthropic API key (set via UI)
 }
 
 
@@ -127,6 +128,14 @@ class Handler(SimpleHTTPRequestHandler):
             mode = params.get("mode", "fast")
             extra_urls = params.get("extra_urls", "")
             criteria_file = state.get("active_rubric")  # Use custom rubric if one was generated
+            api_key = state.get("api_key", "")
+
+            if not api_key and not no_classify:
+                self.send_response(400)
+                self.send_header("Content-type", "application/json")
+                self.end_headers()
+                self.wfile.write(b'{"error": "No API key set. Please enter your Anthropic API key first."}')
+                return
 
             # Start the run in a background thread
             state["running"] = True
@@ -134,7 +143,7 @@ class Handler(SimpleHTTPRequestHandler):
             state["error"] = None
             state["log_lines"] = []
 
-            thread = threading.Thread(target=run_classifier, args=(limit, no_classify, mode, criteria_file, extra_urls), daemon=True)
+            thread = threading.Thread(target=run_classifier, args=(limit, no_classify, mode, criteria_file, extra_urls, api_key), daemon=True)
             thread.start()
 
             self.send_response(200)
@@ -145,8 +154,9 @@ class Handler(SimpleHTTPRequestHandler):
         elif self.path == "/stop":
             if state["process"]:
                 state["process"].terminate()
-                state["log_lines"].append("⛔ Stopped by user")
+                state["log_lines"].append("⛔ Stopped by user — partial results have been saved")
             state["running"] = False
+            state["finished"] = True
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
@@ -182,7 +192,7 @@ class Handler(SimpleHTTPRequestHandler):
                     timestamp = int(time.time())
                     rubric_path = RUBRICS_DIR / f"custom_rubric_{timestamp}.txt"
 
-                    rubric_text = generate_rubric_from_doc(doc_text, output_path=rubric_path)
+                    rubric_text = generate_rubric_from_doc(doc_text, output_path=rubric_path, api_key=state.get("api_key", ""))
 
                     state["active_rubric"] = str(rubric_path)
                     state["rubric_text"] = rubric_text
@@ -209,6 +219,28 @@ class Handler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b'{"status": "reset"}')
 
+        elif self.path == "/save-api-key":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode() if content_length else "{}"
+            try:
+                params = json.loads(body) if body else {}
+            except json.JSONDecodeError:
+                params = {}
+
+            key = params.get("api_key", "").strip()
+            if not key:
+                self.send_response(400)
+                self.send_header("Content-type", "application/json")
+                self.end_headers()
+                self.wfile.write(b'{"error": "No API key provided"}')
+                return
+
+            state["api_key"] = key
+            self.send_response(200)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            self.wfile.write(b'{"status": "saved"}')
+
         else:
             self.send_response(404)
             self.end_headers()
@@ -217,7 +249,7 @@ class Handler(SimpleHTTPRequestHandler):
         pass  # Suppress default HTTP logging
 
 
-def run_classifier(limit, no_classify, mode="fast", criteria_file=None, extra_urls=""):
+def run_classifier(limit, no_classify, mode="fast", criteria_file=None, extra_urls="", api_key=""):
     """Run the classifier script as a subprocess."""
     try:
         # Use the venv python explicitly
@@ -236,6 +268,8 @@ def run_classifier(limit, no_classify, mode="fast", criteria_file=None, extra_ur
             cmd += ["--criteria-file", criteria_file]
         if extra_urls:
             cmd += ["--extra-urls", extra_urls]
+        if api_key:
+            cmd += ["--api-key", api_key]
 
         env = os.environ.copy()
         # Force unbuffered Python output so logs stream in real-time
@@ -346,6 +380,91 @@ def get_html():
   .btn-secondary { background: #2a2438; color: #c8c0d8; }
   .btn-secondary:hover { background: #3a3448; }
   .btn-small { padding: 6px 16px; font-size: 0.85rem; }
+
+  /* Modal overlay */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-overlay.hidden { display: none; }
+  .modal {
+    background: #1a1428;
+    border: 1px solid #3a2848;
+    border-radius: 16px;
+    padding: 36px;
+    max-width: 540px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .modal h2 {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #f0a 0%, #fa0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .modal p { color: #a8a0b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+  .modal .feature-list { list-style: none; margin-bottom: 20px; }
+  .modal .feature-list li {
+    padding: 6px 0;
+    font-size: 0.88rem;
+    color: #c8c0d8;
+  }
+  .modal .feature-list li::before { content: "  "; margin-right: 8px; }
+  .modal .divider {
+    border: none;
+    border-top: 1px solid #2a2438;
+    margin: 20px 0;
+  }
+  .modal label {
+    display: block;
+    font-size: 0.85rem;
+    color: #8a8494;
+    margin-bottom: 8px;
+  }
+  .modal input[type="password"] {
+    width: 100%;
+    background: #0f0a1a;
+    border: 1px solid #3a3448;
+    color: #e0dce8;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 8px;
+  }
+  .modal input[type="password"]:focus { border-color: #f0a; outline: none; }
+  .modal .api-link {
+    font-size: 0.82rem;
+    color: #8a8494;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .modal .api-link a { color: #fa8; text-decoration: none; }
+  .modal .api-link a:hover { text-decoration: underline; }
+  .modal .btn-row { display: flex; gap: 12px; justify-content: flex-end; }
+  .modal .error-msg { color: #f88; font-size: 0.82rem; margin-bottom: 8px; display: none; }
+
+  /* API key status badge */
+  .api-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .api-badge.set { background: #1a3028; color: #8fd; }
+  .api-badge.unset { background: #3a2030; color: #f88; }
+  .api-badge:hover { opacity: 0.8; }
 
   /* Framework upload area */
   .upload-area {
@@ -557,8 +676,38 @@ def get_html():
 </style>
 </head>
 <body>
+
+<!-- ==================== INTRO / API KEY MODAL ==================== -->
+<div class="modal-overlay" id="introModal">
+  <div class="modal">
+    <h2>Storylane Demo Classifier</h2>
+    <p>Automatically walk through customer demos on the Storylane showcase, capture screenshots, and classify them using Claude AI.</p>
+    <ul class="feature-list">
+      <li>Scrapes all demos from the Storylane customer showcase</li>
+      <li>Walks through each demo step-by-step using a headless browser</li>
+      <li>Classifies demos using Claude AI (narrative quality, storytelling, scoring)</li>
+      <li>Generates CSV and JSON reports with detailed insights</li>
+    </ul>
+    <hr class="divider">
+    <label for="apiKeyInput">Enter your Anthropic API Key to get started</label>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." onkeydown="if(event.key==='Enter')saveApiKey()">
+    <span class="api-link">
+      Don't have one? <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get your API key from console.anthropic.com</a>
+    </span>
+    <div class="error-msg" id="apiKeyError"></div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="skipApiKey()">Skip (scrape only)</button>
+      <button class="btn btn-start" onclick="saveApiKey()">Save &amp; Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MAIN APP ==================== -->
 <div class="container">
-  <h1>Storylane Demo Classifier</h1>
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+    <h1>Storylane Demo Classifier</h1>
+    <span class="api-badge unset" id="apiBadge" onclick="showApiKeyModal()">No API Key</span>
+  </div>
   <p class="subtitle">Automatically walk through customer demos, capture screenshots, and classify them using AI.</p>
 
   <!-- SECTION 1: Run Settings (primary) -->
@@ -577,9 +726,9 @@ def get_html():
       <div class="form-group">
         <label>Classification Mode</label>
         <select id="modeSelect">
-          <option value="fast" selected>Fast — text only, Haiku (~$0.10)</option>
-          <option value="smart">Smart — Haiku + Sonnet for top demos (~$1-2)</option>
-          <option value="full">Full — screenshots + Sonnet (~$5-8)</option>
+          <option value="fast" selected>Fast -- text only, Haiku (~$0.10)</option>
+          <option value="smart">Smart -- Haiku + Sonnet for top demos (~$1-2)</option>
+          <option value="full">Full -- screenshots + Sonnet (~$5-8)</option>
           <option value="none">Skip classification (free)</option>
         </select>
       </div>
@@ -589,7 +738,7 @@ def get_html():
 
     <!-- Custom URLs -->
     <div style="margin-top:20px; padding-top:16px; border-top:1px solid #2a2438;">
-      <label style="font-size:0.85rem; color:#8a8494; display:block; margin-bottom:6px;">Add custom demo URLs <span style="color:#5a5468;">(optional — these run in addition to the showcase demos)</span></label>
+      <label style="font-size:0.85rem; color:#8a8494; display:block; margin-bottom:6px;">Add custom demo URLs <span style="color:#5a5468;">(optional -- these run in addition to the showcase demos)</span></label>
       <div class="url-input-row">
         <input type="text" id="customUrlInput" placeholder="Paste a demo URL and press Enter (e.g. https://app.storylane.io/demo/...)" onkeydown="if(event.key==='Enter')addCustomUrl()">
         <button class="btn btn-secondary btn-small" onclick="addCustomUrl()">Add</button>
@@ -632,7 +781,7 @@ def get_html():
         By default, demos are classified using the Logic / Emotion / Credibility storytelling framework. If you want to use a different framework, paste your document below and generate a custom rubric.
       </p>
       <div id="uploadSection">
-        <textarea id="frameworkText" placeholder="Paste your classification framework document here...&#10;&#10;Example: Describe how you want demos evaluated — what makes a good demo? What are the categories? What should be scored?"></textarea>
+        <textarea id="frameworkText" placeholder="Paste your classification framework document here...&#10;&#10;Example: Describe how you want demos evaluated -- what makes a good demo? What are the categories? What should be scored?"></textarea>
         <div style="display:flex; gap:12px; align-items:center; margin-top:12px;">
           <button class="btn btn-secondary" onclick="generateRubric()">Generate Custom Rubric</button>
           <span id="rubricSpinner" style="display:none"><span class="spinner"></span> Generating with Sonnet...</span>
@@ -659,6 +808,67 @@ let pollInterval = null;
 let lastLogCount = 0;
 let customRubricActive = false;
 let customUrls = [];
+let apiKeySet = false;
+
+// --- API Key functions ---
+
+function showApiKeyModal() {
+  document.getElementById('introModal').classList.remove('hidden');
+  document.getElementById('apiKeyInput').focus();
+}
+
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (!key) {
+    const errEl = document.getElementById('apiKeyError');
+    errEl.textContent = 'Please enter your API key.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!key.startsWith('sk-ant-')) {
+    const errEl = document.getElementById('apiKeyError');
+    errEl.textContent = 'API key should start with "sk-ant-". Please check and try again.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  fetch('/save-api-key', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ api_key: key })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === 'saved') {
+      apiKeySet = true;
+      document.getElementById('introModal').classList.add('hidden');
+      updateApiBadge();
+    }
+  })
+  .catch(() => {
+    const errEl = document.getElementById('apiKeyError');
+    errEl.textContent = 'Failed to save key. Is the server running?';
+    errEl.style.display = 'block';
+  });
+}
+
+function skipApiKey() {
+  apiKeySet = false;
+  document.getElementById('introModal').classList.add('hidden');
+  document.getElementById('modeSelect').value = 'none';
+  updateApiBadge();
+}
+
+function updateApiBadge() {
+  const badge = document.getElementById('apiBadge');
+  if (apiKeySet) {
+    badge.className = 'api-badge set';
+    badge.textContent = 'API Key Set';
+  } else {
+    badge.className = 'api-badge unset';
+    badge.textContent = 'No API Key';
+  }
+}
 
 // --- Custom URL functions ---
 
@@ -785,6 +995,12 @@ function startRun() {
   const mode = document.getElementById('modeSelect').value;
   const noClassify = mode === 'none';
 
+  // Check API key for classification modes
+  if (!noClassify && !apiKeySet) {
+    showApiKeyModal();
+    return;
+  }
+
   document.getElementById('startBtn').style.display = 'none';
   document.getElementById('stopBtn').style.display = 'inline-block';
   document.getElementById('downloadBtn').style.display = 'none';
@@ -800,18 +1016,32 @@ function startRun() {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ limit: limit || 0, no_classify: noClassify, mode: noClassify ? 'fast' : mode, extra_urls: extraUrls })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.error) {
+      document.getElementById('statusDot').className = 'status-dot error';
+      document.getElementById('statusText').textContent = data.error;
+      document.getElementById('startBtn').style.display = 'inline-block';
+      document.getElementById('stopBtn').style.display = 'none';
+      if (data.error.includes('API key')) showApiKeyModal();
+      return;
+    }
+    pollInterval = setInterval(pollStatus, 1500);
   });
-
-  pollInterval = setInterval(pollStatus, 1500);
 }
 
 function stopRun() {
   fetch('/stop', { method: 'POST' });
   document.getElementById('statusDot').className = 'status-dot error';
-  document.getElementById('statusText').textContent = 'Stopped';
+  document.getElementById('statusText').textContent = 'Stopped -- partial results saved';
   document.getElementById('startBtn').style.display = 'inline-block';
   document.getElementById('stopBtn').style.display = 'none';
   if (pollInterval) clearInterval(pollInterval);
+
+  // Show download button and load whatever results exist
+  document.getElementById('downloadBtn').style.display = 'inline-block';
+  loadResults();
 }
 
 function pollStatus() {
@@ -847,17 +1077,19 @@ function pollStatus() {
         } else {
           document.getElementById('statusDot').className = 'status-dot done';
           document.getElementById('statusText').textContent = 'Done!';
-          document.getElementById('downloadBtn').style.display = 'inline-block';
-          loadResults();
         }
+        // Always show download + results (partial or complete)
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+        loadResults();
       }
     })
     .catch(() => {});
 }
 
 function getLineClass(line) {
-  if (line.includes('Done')) return 'success';
-  if (line.includes('Error')) return 'error';
+  if (line.includes('Done') || line.includes('Saving progress')) return 'success';
+  if (line.includes('Error') || line.includes('Stopped')) return 'error';
+  if (line.includes('warning') || line.includes('unavailable')) return 'warn';
   return '';
 }
 
@@ -870,33 +1102,64 @@ function loadResults() {
       if (data.error) return;
       const grid = document.getElementById('resultsGrid');
       grid.innerHTML = '';
-      const classified = data.filter(d => d.classification && d.classification.type);
-      classified.sort((a, b) => (b.classification.overall_score || 0) - (a.classification.overall_score || 0));
-      for (const demo of classified) {
-        const cls = demo.classification;
+
+      // Show ALL demos (classified or not) so partial results are visible
+      const allDemos = data.sort((a, b) => {
+        const scoreA = (a.classification && a.classification.overall_score) || 0;
+        const scoreB = (b.classification && b.classification.overall_score) || 0;
+        return scoreB - scoreA;
+      });
+
+      for (const demo of allDemos) {
+        const cls = demo.classification || {};
         const typeClass = getTypeClass(cls.type);
         const card = document.createElement('div');
         card.className = 'result-card';
-        card.innerHTML =
-          '<div class="name">' + demo.name + '</div>' +
-          '<span class="type ' + typeClass + '">' + (cls.type || 'Unknown') + '</span>' +
-          makeScoreBar('Logic', cls.logic_score) +
-          makeScoreBar('Emotion', cls.emotion_score) +
-          makeScoreBar('Credib.', cls.credibility_score) +
-          '<div class="summary-text">' + (cls.summary || '') + '</div>';
+
+        let inner = '<div class="name">' + escapeHtml(demo.name) + '</div>';
+        if (cls.type) {
+          inner += '<span class="type ' + typeClass + '">' + escapeHtml(cls.type) + '</span>';
+        } else if (demo.steps_captured > 0) {
+          inner += '<span class="type type-other">Scraped (not classified)</span>';
+        } else {
+          inner += '<span class="type type-other">Discovered</span>';
+        }
+
+        if (demo.steps_captured > 0) {
+          inner += '<div style="font-size:0.78rem; color:#5a5468; margin-bottom:6px;">' + demo.steps_captured + ' steps captured</div>';
+        }
+
+        inner += makeScoreBar('Logic', cls.logic_score);
+        inner += makeScoreBar('Emotion', cls.emotion_score);
+        inner += makeScoreBar('Credib.', cls.credibility_score);
+
+        if (cls.summary) {
+          inner += '<div class="summary-text">' + escapeHtml(cls.summary) + '</div>';
+        }
+
+        card.innerHTML = inner;
         grid.appendChild(card);
       }
-      document.getElementById('resultsPanel').classList.add('visible');
+      if (allDemos.length > 0) {
+        document.getElementById('resultsPanel').classList.add('visible');
+      }
     })
     .catch(() => {});
+}
+
+function escapeHtml(text) {
+  if (!text) return '';
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 function getTypeClass(type) {
   if (!type) return 'type-other';
   const t = type.toLowerCase();
-  if (t.includes('strong')) return 'type-strong';
-  if (t.includes('feature dump') || t.includes('dump')) return 'type-feature-dump';
-  if (t.includes('generic')) return 'type-generic';
+  if (t.includes('strong') || t.includes('good')) return 'type-strong';
+  if (t.includes('feature dump') || t.includes('dump') || t.includes('walkthrough')) return 'type-feature-dump';
+  if (t.includes('generic') || t.includes('needs improvement')) return 'type-generic';
   if (t.includes('claim')) return 'type-claim-heavy';
   if (t.includes('click')) return 'type-clickthrough';
   return 'type-other';
@@ -917,13 +1180,10 @@ function makeScoreBar(label, score) {
 
 
 if __name__ == "__main__":
-    # Check if API key is set
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key:
-        print("⚠️  ANTHROPIC_API_KEY not set. Classification will be skipped.")
-        print("   To set it, run:")
-        print('   export ANTHROPIC_API_KEY="your-key-here"')
-        print()
+    # Accept API key from env var if present (will be overridden by UI entry)
+    env_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if env_key:
+        state["api_key"] = env_key
 
     print(f"🎬 Storylane Demo Classifier")
     print(f"   Open http://localhost:{PORT} in your browser")
