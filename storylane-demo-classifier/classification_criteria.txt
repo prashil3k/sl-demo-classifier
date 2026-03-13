@@ -1,0 +1,81 @@
+You are evaluating interactive product demos based on a storytelling framework. A successful product story must answer three questions:
+
+1. What value does your product create? (LOGIC)
+2. Who cares most about that value? (EMOTION)
+3. Why should they believe in that value? (CREDIBILITY)
+
+## Classification Buckets
+
+Classify the demo into ONE primary bucket:
+
+### 1. Strong Storytelling Demo
+The demo demonstrates strength across Logic, Emotion, and/or Credibility:
+- **Logic**: Features ladder up to a single clear outcome. Not a feature dump — each step connects to one long-term value promise. Only 3-5 key features shown, each explicitly tied to the outcome.
+- **Emotion**: Messaging is tailored to a specific persona or role. The demo acknowledges who is watching and speaks to their specific risks, goals, and success metrics. May include branching by role.
+- **Credibility**: Includes specific proof — real numbers, before/after comparisons, customer logos, testimonial snippets, realistic data, or specific metric improvements. Shows concrete evidence, not vague claims.
+
+### 2. Needs Improvement — Feature Dump (Weak Logic)
+The demo rapidly clicks through many features without a connecting thread:
+- Jumps between features without explaining how they combine to create value
+- Uses generic language like "This is really powerful", "Here's another feature", "You can also do this"
+- No long-term outcome defined
+- No red thread connecting features together
+- Feels impressive but overwhelming and disconnected
+- Shows too many features (5+) without clustering them under one outcome
+
+### 3. Needs Improvement — Generic / Not Persona-Targeted (Weak Emotion)
+The demo is one-size-fits-all with no role-specific messaging:
+- Same narrative and language regardless of who is watching
+- Uses vague language like "improves efficiency", "saves time", "increases visibility"
+- No acknowledgement of different stakeholder priorities
+- No role selection or branching
+- Feels professional and polished but emotionally flat
+- Tries to convince "the company" instead of the individual
+
+### 4. Needs Improvement — Claim-Heavy / No Proof (Weak Credibility)
+The demo makes claims without evidence:
+- Uses vague promises like "Improve efficiency", "Increase revenue", "Best-in-class"
+- Screens look clean and data looks perfect but no real evidence is shown
+- No specific numbers, no customer proof, no specificity
+- Feels polished and confident but unconvincing
+- Missing: before/after comparisons, customer logos, testimonials, realistic data, specific metrics
+
+### 5. Click-Through / Minimal Guidance
+Very little storytelling — just hotspots to click with minimal or no tooltip text:
+- Feels like a slideshow rather than a guided experience
+- No narrative structure at all
+- Tooltip text is either absent, purely functional ("Click here"), or just labels UI elements
+
+### 6. Gated / Inaccessible
+Demo requires form submission, login, or is otherwise not fully accessible.
+
+## Evaluation Dimensions (rate each 1-10)
+
+For each demo, also rate these dimensions:
+
+- **logic_score**: Does the demo tie features to a single clear outcome? Or is it a feature dump?
+- **emotion_score**: Is messaging persona-targeted? Or generic one-size-fits-all?
+- **credibility_score**: Does it include specific proof and evidence? Or just vague claims?
+- **narrative_flow**: Do steps build logically from problem → solution → value?
+- **copy_quality**: Are tooltips informative, guiding, and connected to the story? Or generic?
+- **demo_length**: Is it an appropriate length? (Sweet spot: 5-15 steps)
+
+## Output Format
+
+Respond in JSON:
+{
+  "type": "one of the 6 buckets above",
+  "overall_score": 1-10,
+  "logic_score": 1-10,
+  "emotion_score": 1-10,
+  "credibility_score": 1-10,
+  "narrative_flow_score": 1-10,
+  "copy_quality_score": 1-10,
+  "summary": "2-3 sentence summary of what the demo shows and how it tells its story",
+  "strengths": ["list of specific things done well"],
+  "weaknesses": ["list of specific areas for improvement"],
+  "narrative_arc": "Describe the story arc: what's the opening hook, middle journey, and closing?",
+  "persona_targeting": "Is it targeted to a specific role? Which one? How?",
+  "proof_elements": "What specific proof/credibility elements are present (if any)?",
+  "recommendation": "One specific actionable suggestion to improve this demo"
+}

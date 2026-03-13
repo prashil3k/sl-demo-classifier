@@ -1,0 +1,988 @@
+[
+  {
+    "name": "Clari",
+    "showcase_url": "https://www.storylane.io/customer-showcase/clari",
+    "demo_url": "https://app.storylane.io/demo/x5n3m0pk2zi2",
+    "live_preview_url": "https://www.clari.com/product-tour/",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 14,
+    "steps_captured": 14,
+    "classification": {
+      "type": "Needs Improvement \u2014 Feature Dump (Weak Logic)",
+      "overall_score": 4,
+      "logic_score": 3,
+      "emotion_score": 3,
+      "credibility_score": 2,
+      "narrative_flow_score": 3,
+      "copy_quality_score": 4,
+      "summary": "Clari's demo showcases 11+ features across dashboards, forecasting, deal management, and sales engagement, but lacks a coherent narrative thread connecting them to a single outcome. While the opening promise is 'predictable revenue growth,' the demo rapidly feature-jumps without explaining how each capability builds toward that goal or addressing specific persona needs.",
+      "strengths": [
+        "Clear opening hook: 'Will you meet, beat, or miss your revenue objectives?'",
+        "Logical feature grouping (e.g., visibility \u2192 forecasting \u2192 deal management \u2192 engagement)",
+        "Consistent brand voice and professional tone throughout",
+        "Acknowledges multiple revenue models (subscription, consumption, NDR) showing product depth",
+        "Closing CTA ('Schedule a Demo') provides next step"
+      ],
+      "weaknesses": [
+        "Feature dump: 11 distinct features shown without a connecting red thread",
+        "No persona targeting\u2014same narrative regardless of whether viewer is CFO, VP Sales, or rep",
+        "Zero credibility proof\u2014no numbers, customer logos, before/after comparisons, or specific metrics",
+        "Generic benefit language: 'aligned,' 'confident,' 'informed decisions,' 'nothing slips through the cracks'",
+        "No problem-solution-outcome arc\u2014features are listed rather than sequenced to solve a specific pain point",
+        "Missing emotional resonance\u2014doesn't speak to role-specific fears (quota miss, visibility gap, deal slippage)",
+        "Steps 8\u201312 feel rushed and interchangeable without clear prioritization",
+        "No evidence that these features actually deliver the 'predictable path to growth' promised in step 1"
+      ],
+      "narrative_arc": "Opening: 'Meet, beat, or miss revenue targets' \u2192 Middle: Rapid progression through visibility (dashboard, real-time insights, pipeline drill-down), consolidation (forecasting, multi-org alignment), deal management (Smart Summaries, engagement, CRM updates), and rep enablement (battlecards, follow-ups, MAPs) \u2192 Closing: 'Run Revenue with Clari + CTA.' The middle lacks connective tissue\u2014each feature feels like an item on a product list rather than a step toward solving the opening tension.",
+      "persona_targeting": "None. The demo uses generic 'your team,' 'your business,' and organizational language that could apply to any buyer. No branching by role (CFO/revenue ops vs. VP Sales vs. rep). No acknowledgment of different stakeholder priorities or success metrics.",
+      "proof_elements": "None. No specific metrics, customer logos, testimonials, before/after data, or realistic use cases. All claims are aspirational ('AI-driven,' 'unified visibility,' 'confident decision-making') without supporting evidence.",
+      "recommendation": "Restructure the demo around a single persona's revenue challenge: Choose one buyer (e.g., VP Sales missing forecast accuracy). Open with their specific problem (e.g., 'Pipeline visibility is fragmented across CRM instances\u2014you can't forecast confidently'). Then sequence 4\u20135 features as steps to solve it (unified forecasting \u2192 pipeline inspection \u2192 risk detection \u2192 team action \u2192 verified outcome). Close with a specific metric or customer proof (e.g., 'Customers improve forecast accuracy by 23%' or 'Closed 3 deals faster using Smart Deal Summaries'). This moves from feature dump to outcome-driven story.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "Run Revenue with ClariWill you meet, beat, or miss your revenue objectives? Clari\u2019s Revenue Platform provides a predictable path to growth, identifying revenue leaks early so you can activate your team to address them.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 13,
+        "tooltip_text": "Stay on top of progress and stay aligned with Clari\u2019s Dashboard. Track essential metrics, spot risks, and prioritize next steps to keep your team accountable and on track to meet revenue targets.2/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_002.png"
+      },
+      {
+        "step_number": 3,
+        "total_steps": 13,
+        "tooltip_text": "Stay ahead by tracking real-time performance. Clari's AI-driven analytics give insights into KPIs and emerging risks that could impact your business.3/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_003.png"
+      },
+      {
+        "step_number": 4,
+        "total_steps": 13,
+        "tooltip_text": "Discover what's causing changes in your pipeline with real-time insights. View high-level overviews and drill down to specific deals to understand shifts and make informed decisions. Easily inspect pipeline changes for any date range.4/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_004.png"
+      },
+      {
+        "step_number": 5,
+        "total_steps": 13,
+        "tooltip_text": "Forecast all revenue streams with Clari's single, reliable view. Consolidate subscription, consumption, and NDR models for unified visibility and confident decision-making.5/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_005.png"
+      },
+      {
+        "step_number": 6,
+        "total_steps": 13,
+        "tooltip_text": "Achieve clarity and alignment across all CRM and Clari instances with a unified forecasting experience. Easily toggle between orgs, access different views, and provision users enterprise-wide with a single login.6/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_006.png"
+      },
+      {
+        "step_number": 7,
+        "total_steps": 13,
+        "tooltip_text": "Achieve next-level pipeline management with Clari\u2019s AI-powered Smart Deal Summaries. Get a clear, actionable view of every deal, backed by insights that highlight risks, prioritize next steps, and drive informed decisions\u2014so nothing slips through the cracks.7/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_007.png"
+      },
+      {
+        "step_number": 8,
+        "total_steps": 13,
+        "tooltip_text": "Take immediate action the moment you spot risk. With Clari\u2019s sales engagement solution, you can assign tasks directly within Inspect to keep your team aligned, focused, and ready to drive revenue where it matters most.8/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_008.png"
+      },
+      {
+        "step_number": 9,
+        "total_steps": 13,
+        "tooltip_text": "Capture every detail with Clari's Smart CRM Updates. Our AI extracts, tracks, and stores critical information from every conversation, automatically populating CRM fields aligned to your team's needs.9/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_009.png"
+      },
+      {
+        "step_number": 10,
+        "total_steps": 13,
+        "tooltip_text": "Ensure every opportunity is nurtured with Clari's Smart Follow-Up Emails. Keep prospects engaged and reps focused on strategic actions for high-value account engagement.10/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_010.png"
+      },
+      {
+        "step_number": 11,
+        "total_steps": 13,
+        "tooltip_text": "Boost rep confidence and keep deals on track with Clari's Smart Battlecards. AI-triggered keywords provide live objection handling, pricing guidance, and competitive insights on every call. No manager needed.11/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_011.png"
+      },
+      {
+        "step_number": 12,
+        "total_steps": 13,
+        "tooltip_text": "Use Clari's Mutual Action Plans (MAPs) to align sales and customer expectations, track progress, and ensure a clear path to close for predictable revenue.12/13Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_012.png"
+      },
+      {
+        "step_number": 13,
+        "total_steps": 13,
+        "tooltip_text": "Run Revenue with ClariSchedule a Demo",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_013.png"
+      },
+      {
+        "step_number": 14,
+        "total_steps": 14,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Clari/step_014.png"
+      }
+    ]
+  },
+  {
+    "name": "Sprout Social",
+    "showcase_url": "https://www.storylane.io/customer-showcase/sprout-social",
+    "demo_url": "https://demo.sproutsocial.com/demo/smsq7u6lqvvl?embed=inline&embedStorylane=true",
+    "live_preview_url": "https://sproutsocial.com/product-tour/",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 17,
+    "steps_captured": 17,
+    "classification": {
+      "type": "Needs Improvement \u2014 Feature Dump (Weak Logic)",
+      "overall_score": 5,
+      "logic_score": 4,
+      "emotion_score": 5,
+      "credibility_score": 6,
+      "narrative_flow_score": 4,
+      "copy_quality_score": 5,
+      "summary": "The demo spans 17 steps covering two main product areas: Analytics/Reports and Publishing/Collaboration. While it includes some credibility markers (G2 rating, IDC leader status, processing 1B+ daily messages), the narrative lacks a clear through-line connecting features to a single outcome. Features are presented sequentially without explaining how they work together to solve a specific problem.",
+      "strengths": [
+        "Opens with credibility markers (G2 #1, IDC leader, 1B+ daily messages processed)",
+        "Attempts to cluster features into two logical buckets (Analytics and Publishing)",
+        "Includes some outcome-oriented language ('prove ROI', 'align social performance with business goals', 'drive more impact')",
+        "Copy acknowledges practical pain points (building reports from scratch, collaboration friction, approval workflows)",
+        "Mentions no-login-required sharing, which addresses a real user need"
+      ],
+      "weaknesses": [
+        "17 steps is too long and feels like a feature tour rather than a guided story",
+        "No clear problem statement\u2014doesn't articulate why someone should care before showing features",
+        "Features are listed sequentially without explaining how they combine to create a single outcome",
+        "Generic language like 'deeper insights', 'track progress', 'optimize'\u2014vague rather than specific",
+        "No persona targeting\u2014doesn't distinguish between social manager, director, executive, or other roles",
+        "No proof of customer impact beyond logos/ratings (no case study, metric improvements, or before/after)",
+        "Weak connective tissue between Analytics and Publishing sections\u2014why are these shown together?",
+        "Copy is functional but lacks emotion\u2014doesn't acknowledge specific stakeholder pain or success metrics",
+        "Steps 7-10 and 13-16 feel repetitive (drilling into sub-features without clear value added)"
+      ],
+      "narrative_arc": "Opening hook: 'Easily drive more impact from social media' + credibility (G2, IDC). Journey: Rapid tour of Analytics (reports, metrics, customization, filtering) then Publishing (calendars, collaboration, workflows). Closing: Implied but weak\u2014no summary of how these features work together to achieve the opening promise. The story lacks tension, resolution, and emotional resonance.",
+      "persona_targeting": "None. The demo uses one-size-fits-all language with no role selection or branching. Sprout Social serves multiple personas (social managers, directors, executives, marketers, creative teams), but the demo doesn't differentiate value by role. A social manager cares about speed and collaboration; an executive cares about ROI and alignment with business goals. The demo tries to speak to everyone and thus speaks to no one effectively.",
+      "proof_elements": [
+        "G2 rating (#1 best software)",
+        "IDC leader status",
+        "Processes 1B+ daily messages (scale/trust signal)",
+        "20+ available reports (breadth of functionality)"
+      ],
+      "recommendation": "Restructure the demo around a single persona and outcome. Choose one: either 'Help a social manager move faster with collaborative publishing' or 'Help an executive prove social ROI with better analytics.' Cut to 8-10 steps max. Open with a specific problem (e.g., 'Our team spends 5 hours building reports each week' or 'Approval workflows are slowing our content calendar'), show 3-4 features that directly solve it, and close with a before/after metric or customer quote. Remove feature sub-drills (e.g., steps 7-10 on report customization) unless they're critical to the core outcome.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "Easily drive more impact from social mediaAdvanced analytics, AI and automation\u200c and personalized engagement\u2014there's a reason Sprout has been rated #1 best software on G2 and a leader by IDC. Explore how our comprehensive platform helps teams move faster.See how it works",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 2,
+        "tooltip_text": "Get up and running quicklyOur easy-to-navigate interface lets you spend more time driving results. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_002.png"
+      },
+      {
+        "step_number": 3,
+        "total_steps": 3,
+        "tooltip_text": "First, let's check out Reports to measure content performance.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_003.png"
+      },
+      {
+        "step_number": 4,
+        "total_steps": 4,
+        "tooltip_text": "Quantify your impact in secondsSprout\u2019s Analytics processes 1B+ daily messages, giving you deeper insights, custom metrics\u200c and reports to prove ROI and align social performance with business goals.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_004.png"
+      },
+      {
+        "step_number": 5,
+        "total_steps": 5,
+        "tooltip_text": "Now, let's take a look at Profile Performance Reports!Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_005.png"
+      },
+      {
+        "step_number": 6,
+        "total_steps": 6,
+        "tooltip_text": "Showcase data in 20+ reports. Tailor metrics to fit your goals or build customized reports to highlight exactly what matters most to your strategy. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_006.png"
+      },
+      {
+        "step_number": 7,
+        "total_steps": 7,
+        "tooltip_text": "Quickly adjust date ranges and comparison periods to uncover insights and track progress with precision.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_007.png"
+      },
+      {
+        "step_number": 8,
+        "total_steps": 8,
+        "tooltip_text": "Let\u2019s check out Post Performance Reports.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_008.png"
+      },
+      {
+        "step_number": 9,
+        "total_steps": 9,
+        "tooltip_text": "Analyze all posts (even native) to identify top-performing content by impressions, engagement\u200c or other key metrics. Compare organic and paid performance to uncover trends and optimize.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_009.png"
+      },
+      {
+        "step_number": 10,
+        "total_steps": 10,
+        "tooltip_text": "No more building reports from scratch! Quickly create tailored reports and share with anyone who needs to see them\u2014no Sprout login required. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_010.png"
+      },
+      {
+        "step_number": 11,
+        "total_steps": 11,
+        "tooltip_text": "Now, let\u2019s dive into Publishing! Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_011.png"
+      },
+      {
+        "step_number": 12,
+        "total_steps": 12,
+        "tooltip_text": "Transform your content calendar into a hub for collaboration without frictionPlan and schedule your content faster thanks to customizable approval workflows, shareable links (no login required) and calendar notes that empower teams to strategize quickly.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_012.png"
+      },
+      {
+        "step_number": 13,
+        "total_steps": 13,
+        "tooltip_text": "Click \u201cWeek\u201d at the top right of your screen to get an even more detailed view. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_013.png"
+      },
+      {
+        "step_number": 14,
+        "total_steps": 14,
+        "tooltip_text": "Gain a clear view of your publishing strategy. Filter by tags, campaigns and post types. Track scheduled posts for campaigns and drag-and-drop to adjust the date. Collaborate directly on individual posts.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_014.png"
+      },
+      {
+        "step_number": 15,
+        "total_steps": 15,
+        "tooltip_text": "Chat and comment directly on posts, easily share updates and provide feedback to keep everyone in sync. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_015.png"
+      },
+      {
+        "step_number": 16,
+        "total_steps": 16,
+        "tooltip_text": "Effortlessly refine and repurpose your best-performing content. Duplicate posts and bring them into the Compose Window, to collaborate, iterate\u200c and optimize.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_016.png"
+      },
+      {
+        "step_number": 17,
+        "total_steps": 17,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Sprout_Social/step_017.png"
+      }
+    ]
+  },
+  {
+    "name": "Dow Jones",
+    "showcase_url": "https://www.storylane.io/customer-showcase/dowjones",
+    "demo_url": "https://app.storylane.io/demo/r6xujyjqdvg3?embed=inline",
+    "live_preview_url": "https://www.dowjones.com/professional/newswires/",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 1,
+    "steps_captured": 1,
+    "classification": {
+      "type": "Click-Through / Minimal Guidance",
+      "overall_score": 2,
+      "logic_score": 1,
+      "emotion_score": 1,
+      "credibility_score": 1,
+      "narrative_flow_score": 1,
+      "copy_quality_score": 1,
+      "summary": "This demo consists of a single step with no tooltip text or guidance provided. There is no narrative structure, no feature explanation, no value proposition articulated, and no evidence of any storytelling framework.",
+      "strengths": [
+        "Extremely minimal \u2014 no clutter or feature overload"
+      ],
+      "weaknesses": [
+        "No storytelling whatsoever \u2014 completely empty tooltip",
+        "No Logic: Zero features explained or connected to any outcome",
+        "No Emotion: No persona targeting, no acknowledgment of user goals or pain points",
+        "No Credibility: No proof, data, numbers, or customer evidence",
+        "No narrative flow or guided experience",
+        "Fails to answer any of the three core storytelling questions",
+        "Single step with no guidance makes this essentially non-functional as a demo"
+      ],
+      "narrative_arc": "There is no narrative arc. The demo does not open, develop, or close. It is a placeholder with zero content.",
+      "persona_targeting": "None. There is no indication of a target role or persona.",
+      "proof_elements": "None present.",
+      "recommendation": "Start from scratch. Define a single clear outcome (e.g., 'Empower financial professionals to identify breaking market opportunities 3x faster'). Identify one primary persona (e.g., equity analyst, portfolio manager). Then map 5-8 key features that ladder up to that outcome, with specific proof points (numbers, customer logos, before/after metrics). Build the tooltip copy to guide users through a problem \u2192 solution \u2192 value journey specific to that role.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Dow_Jones/step_001.png"
+      }
+    ]
+  },
+  {
+    "name": "SentinelOne",
+    "showcase_url": "https://www.storylane.io/customer-showcase/sentinel-one",
+    "demo_url": "https://sentinelone.storylane.io/demo/gnxvjvsbk7wi?scale=true",
+    "live_preview_url": "https://www.sentinelone.com/tour/",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 20,
+    "steps_captured": 20,
+    "classification": {
+      "type": "Needs Improvement \u2014 Feature Dump (Weak Logic)",
+      "overall_score": 5,
+      "logic_score": 4,
+      "emotion_score": 3,
+      "credibility_score": 6,
+      "narrative_flow_score": 4,
+      "copy_quality_score": 5,
+      "summary": "The demo showcases SentinelOne's Offensive Security Engine and Secret Scanning capabilities by walking through finding and verifying exploit paths in cloud infrastructure. While it includes concrete evidence (simulated attacks, actual credentials, curl commands), the narrative jumps between features without a clear connecting thread, and there's no persona-specific messaging or acknowledgment of who should care most about this value.",
+      "strengths": [
+        "Strong credibility elements: Shows real simulated attack evidence (curl commands, actual credentials extracted, RCE proof)",
+        "Concrete proof methodology: Demonstrates how vulnerabilities are verified through safe attack simulation",
+        "Clear evidence visualization: Graph view and multi-angle exploration (public exposures, exploits, misconfigurations)",
+        "Specific technical depth: Names exact attack vectors (SSRF, GeoJSON API, metadata services URI paths)",
+        "Logical information hierarchy: Starts with critical issues, filters by severity, then explores in detail"
+      ],
+      "weaknesses": [
+        "Feature dump structure: Transitions from Offensive Security Engine \u2192 Secret Scanning (step 19) feel disconnected; no unified outcome",
+        "Weak emotional targeting: No mention of who should care (CISO? DevOps? Security ops?), no role-specific language",
+        "Generic value statements: 'This is really powerful' and 'helps you know with certainty' lack specificity",
+        "No business impact quantified: Steps 5 and 19 mention 'business Impact' and '750+ secret types' but don't quantify consequences or improvements",
+        "Abrupt feature introduction: Secret Scanning (step 19) feels tacked on with no connection to prior exploit path narrative",
+        "Missing red thread: Features don't clearly ladder to a single long-term outcome (Is it 'reduce risk'? 'Speed remediation'? 'Prove exploitability'?)",
+        "No customer proof or benchmarks: No logos, metrics, or before/after comparisons"
+      ],
+      "narrative_arc": "Opening hook (step 1): 'Verified Exploit Paths' promise. Middle journey (steps 2-18): Walk through finding critical exploits, viewing evidence, visualizing paths, exploring misconfigurations. Closing (step 19): Abrupt pivot to Secret Scanning with minimal transition. The arc breaks down because Secret Scanning feels like a second feature demo rather than a continuation of the core story.",
+      "persona_targeting": "Completely generic. No persona selected or mentioned. Language is broad enough for any security role but specific enough for none. Missing opportunities to address: 'As a CISO, you need to prove exploitability to executives' or 'As a DevOps engineer, you need to know what to patch first.' Same narrative applies to all.",
+      "proof_elements": [
+        "Simulated attack execution showing RCE is possible (step 7)",
+        "Actual curl command demonstrating SSRF exploitation (step 11)",
+        "Real credentials extracted via metadata services (step 11)",
+        "Visual graph of exploit paths (steps 12-13)",
+        "Multi-factor evidence: public exposures + exploits + misconfigurations (steps 14-18)",
+        "Quantified secret detection: '750+ types of secrets' (step 19)"
+      ],
+      "recommendation": "Restructure the demo around a single persona and outcome. Example: 'As a Cloud Security Lead, reduce mean-time-to-remediation by prioritizing verified exploits over false positives.' Then show: (1) How Offensive Security Engine prioritizes exploits with proof of exploitability, (2) How Secret Scanning prevents credential exposure in the same stack, (3) Business impact (e.g., '3x faster remediation vs. static SAST'). This unifies both features under one value promise and makes the narrative coherent. Add one customer metric at the end (e.g., 'Acme Corp reduced findings by 60% in 30 days') to strengthen credibility.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "Product TourAgentless CNAPP with a unique Offensive Security Engine that uses an attacker's mindset to reveal evidence-backed Verified Exploit PathsGet started",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 2,
+        "tooltip_text": "Offensive Security EngineTo prioritize findings and verify attack paths, click Offensive Security Engine.This service simulates attacks safely to prove what needs to be resolved to quickly.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_002.png"
+      },
+      {
+        "step_number": 3,
+        "total_steps": 3,
+        "tooltip_text": "Let's filter this down to Critical Severity issues, to prioritize findings.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_003.png"
+      },
+      {
+        "step_number": 4,
+        "total_steps": 4,
+        "tooltip_text": "We have 2 critical severity Exploits found.Click on a specific Issue to see its detailsNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_004.png"
+      },
+      {
+        "step_number": 5,
+        "total_steps": 5,
+        "tooltip_text": "The details view includes a Description of the issue, its typical business Impact if left unresolved, as well as Recommended Actions to resolve it.You might think, \"This looks familiar... I thought this was patched? Is this really still present?\"Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_005.png"
+      },
+      {
+        "step_number": 6,
+        "total_steps": 6,
+        "tooltip_text": "Click on View Evidence to see how this exploit was found and verifiedNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_006.png"
+      },
+      {
+        "step_number": 7,
+        "total_steps": 7,
+        "tooltip_text": "Here you can see the simulated attack executed safely, proving that remote code execution is still possible on this instance.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_007.png"
+      },
+      {
+        "step_number": 8,
+        "total_steps": 8,
+        "tooltip_text": "Let's go back and explore this other issue found...Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_008.png"
+      },
+      {
+        "step_number": 9,
+        "total_steps": 9,
+        "tooltip_text": "In this issue description we see info about an exploit using GeoJSON API that can allow access to cloud variables and privilege escalation in a workload/provider.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_009.png"
+      },
+      {
+        "step_number": 10,
+        "total_steps": 10,
+        "tooltip_text": "Let's click into View Evidence to see the test performedNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_010.png"
+      },
+      {
+        "step_number": 11,
+        "total_steps": 11,
+        "tooltip_text": "Here we can see that a curl command was able to exploit the SSRF vulnerability and allow an external attacker to access credentials via a metadata services URI path.We can see the exact credentials that were taken below. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_011.png"
+      },
+      {
+        "step_number": 12,
+        "total_steps": 12,
+        "tooltip_text": "We can also visualize the Verified Exploit Paths(TM) by viewing on the GraphNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_012.png"
+      },
+      {
+        "step_number": 13,
+        "total_steps": 13,
+        "tooltip_text": "We can see these two Critical exploit paths that were simulated.Click into this nginx Amazon EC2 instance to view more detailsNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_013.png"
+      },
+      {
+        "step_number": 14,
+        "total_steps": 14,
+        "tooltip_text": "We can see all public exposures for this EC2 instance...Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_014.png"
+      },
+      {
+        "step_number": 15,
+        "total_steps": 15,
+        "tooltip_text": "... available exploits, ...Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_015.png"
+      },
+      {
+        "step_number": 16,
+        "total_steps": 16,
+        "tooltip_text": "...and misconfigurations.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_016.png"
+      },
+      {
+        "step_number": 17,
+        "total_steps": 17,
+        "tooltip_text": "Let's click back over to the Graph Explorer and update it to also show misconfigurations...Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_017.png"
+      },
+      {
+        "step_number": 18,
+        "total_steps": 18,
+        "tooltip_text": "Now we can see the Critical Verified Exploit Paths and misconfigurations that need to be fixed now!Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_018.png"
+      },
+      {
+        "step_number": 19,
+        "total_steps": 19,
+        "tooltip_text": "Secret ScanningTo identify leakage of over 750+ types of secrets such as Access Keys and RDS credentials, click Secret Scanning on the left navigation panel.Secret Scanning helps you know with certainty if and where secrets are being leaked.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_019.png"
+      },
+      {
+        "step_number": 20,
+        "total_steps": 20,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/SentinelOne/step_020.png"
+      }
+    ]
+  },
+  {
+    "name": "Pearson",
+    "showcase_url": "https://www.storylane.io/customer-showcase/pearson",
+    "demo_url": "https://app.storylane.io/demo/xh7puyoz0x5y?embed=inline",
+    "live_preview_url": "https://www.pearson.com/en-us/higher-education/products-services/aistudytool.html",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 1,
+    "steps_captured": 1,
+    "classification": {
+      "type": "Click-Through / Minimal Guidance",
+      "overall_score": 2,
+      "logic_score": 1,
+      "emotion_score": 1,
+      "credibility_score": 1,
+      "narrative_flow_score": 1,
+      "copy_quality_score": 1,
+      "summary": "This demo consists of a single step with no tooltip text or guidance provided. There is no narrative structure, no feature explanation, no value proposition articulated, and no credibility evidence presented.",
+      "strengths": [
+        "The demo loads and is accessible (no gating)"
+      ],
+      "weaknesses": [
+        "Missing tooltip text entirely \u2014 no guidance or storytelling at all",
+        "Single step with no narrative arc or progression",
+        "No features are explained or connected to outcomes",
+        "No persona targeting or role-specific messaging",
+        "No credibility proof, evidence, or metrics provided",
+        "No clear value proposition communicated",
+        "Feels like an incomplete or broken demo experience"
+      ],
+      "narrative_arc": "No narrative arc exists. There is no opening hook, no middle journey, and no closing value statement.",
+      "persona_targeting": "Not targeted to any specific persona. No acknowledgement of role, goals, or success metrics.",
+      "proof_elements": "None. No credibility elements are present.",
+      "recommendation": "Rebuild this demo from scratch with a clear narrative. Start by defining: (1) What single outcome does Pearson's product create? (2) Who is the target persona watching this? (3) What proof can you show? Then structure 5-10 steps that guide the viewer through a problem, show how the product solves it, and close with specific evidence of value. Add meaningful tooltip text to each step that connects features to the outcome.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Pearson/step_001.png"
+      }
+    ]
+  },
+  {
+    "name": "CyberArk",
+    "showcase_url": "https://www.storylane.io/customer-showcase/cyberark",
+    "demo_url": "https://app.storylane.io/demo/fwa3jg16xql3",
+    "live_preview_url": "https://www.cyberark.com/?page_id=199138&preview=1&_ppp=0377b1189b#",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 24,
+    "steps_captured": 24,
+    "classification": {
+      "type": "Strong Storytelling Demo",
+      "overall_score": 8,
+      "logic_score": 8,
+      "emotion_score": 7,
+      "credibility_score": 8,
+      "narrative_flow_score": 8,
+      "copy_quality_score": 8,
+      "summary": "This demo tells a cohesive story about moving from detecting standing privileges to eliminating them through CyberArk and Wiz integration. It follows a clear problem \u2192 detection \u2192 remediation \u2192 validation arc, showing how excessive cloud access is identified, flagged, secured through policy application, and then verified in real-world use.",
+      "strengths": [
+        "Clear problem statement upfront: 'detect standing privileges and move to zero standing privileges'",
+        "Strong narrative arc with clear stages: Identify \u2192 Risk Alert \u2192 Remediate \u2192 Validate \u2192 Success",
+        "Specific technical details (e.g., 'Data Scientist role', 'AWS Identity Center', 'BD Tech group') ground the story in reality",
+        "Concrete proof elements: Shows actual risk identification, policy creation, session controls (session control \u2705, session monitoring \u2705, session protection \u2705), and permission verification",
+        "Features logically ladder to one outcome: each step connects to reducing standing privileges",
+        "Strong copy quality with emojis and excitement markers (\ud83d\udea8, \u2728, \u26a1, \u2705, \ud83d\udd12, \ud83c\udf89) that guide emotional engagement",
+        "Before/after comparison: Shows the risk state, then the secured state with specific permission restrictions",
+        "Realistic scenario: includes MFA mention, permission set details, and realistic access constraints"
+      ],
+      "weaknesses": [
+        "Some steps have no tooltip text (steps 5, 6, 12, 24), creating minor gaps in guidance",
+        "Emotion score slightly lower because messaging is generic 'cloud teams' rather than explicitly persona-targeted (though the technical depth implies security/identity teams)",
+        "Could be more explicit about which persona cares (Security Engineer? Cloud Architect? Identity Admin?)",
+        "No customer logos, testimonials, or external validation mentioned\u2014all proof is from the product itself",
+        "Doesn't quantify impact (e.g., 'reduce access risk by X%', 'remediation time cut from X to Y')"
+      ],
+      "narrative_arc": "**Opening Hook**: 'Explore how to detect standing privileges and move to zero standing privileges.' **Middle Journey**: Identifies excessive privileges in Wiz \u2192 flags risk \u2192 sends to CyberArk \u2192 applies access controls \u2192 user authenticates with MFA \u2192 connects to secure role \u2192 validates restricted permissions. **Closing**: Celebrates successful policy creation and frames outcome as 'identity security at the scale and speed of your cloud development.'",
+      "persona_targeting": "Implicitly targeted to Cloud Security Engineers / Identity & Access Management teams. Copy references technical concepts (permission sets, AWS Identity Center, multi-factor authentication, session controls) and security-specific outcomes (zero standing privileges, access policies), but doesn't explicitly address the persona by name or role-specific pain point.",
+      "proof_elements": [
+        "Real risk detection: Shows specific user accounts/groups flagged with excessive privileges",
+        "Technical validation: Session control \u2705, session monitoring \u2705, session protection \u2705 checkmarks",
+        "Behavioral proof: Logs in as test user, demonstrates MFA requirement, shows restricted permissions (no access to AWS Health/Cost data)",
+        "Integration proof: Shows policy successfully created in Wiz platform after CyberArk action",
+        "Realistic constraint: Verifies that role is dynamically provisioned/deprovisioned upon connection"
+      ],
+      "recommendation": "Add explicit persona targeting and quantified impact. Modify Step 1 to say: 'In this tour, we show Security Engineers and Cloud Architects how to reduce standing privileges from [X%] to near-zero in multi-cloud environments using CyberArk and Wiz\u2014cutting remediation time from days to minutes.' This anchors the story to a specific role's success metric and adds credibility through specificity.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "Secure Cloud Access with CyberArk and WizIn this tour, we're going to explore how to detect standing privileges and move to zero standing privileges. Let's go!Made with\u00a0\u00a0Storylane",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 2,
+        "tooltip_text": "Let's begin our journey to zero standing privileges in the Wiz platform by identifying which standing privileges exist in our multi-cloud environment. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_002.png"
+      },
+      {
+        "step_number": 3,
+        "total_steps": 3,
+        "tooltip_text": "Navigate to the relevant access control area to check for misconfigurations or excessive access...Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_003.png"
+      },
+      {
+        "step_number": 4,
+        "total_steps": 4,
+        "tooltip_text": "\u2b05\ufe0f",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_004.png"
+      },
+      {
+        "step_number": 5,
+        "total_steps": 5,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_005.png"
+      },
+      {
+        "step_number": 6,
+        "total_steps": 6,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_006.png"
+      },
+      {
+        "step_number": 7,
+        "total_steps": 7,
+        "tooltip_text": "\ud83d\udea8Risk Identified!Thanks to Wiz's deep visibility, when you scroll down you can see several user accounts and groups with excessive privileges.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_007.png"
+      },
+      {
+        "step_number": 8,
+        "total_steps": 8,
+        "tooltip_text": "Let's dive into this Identity Center Group with excessive privileges in the AWS console.",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_008.png"
+      },
+      {
+        "step_number": 9,
+        "total_steps": 9,
+        "tooltip_text": "We can see here that the data scientist role associated with the group BD Tech is flagged as a risk for excessive privileges. Time to secure it with CyberArk Secure Cloud Access.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_009.png"
+      },
+      {
+        "step_number": 10,
+        "total_steps": 10,
+        "tooltip_text": "Leveraging the CyberArk and Wiz integration, you can now send this issue directly to the CyberArk platform to secure these identities by setting up access policies with CyberArk Secure Cloud Access.Run the action to see the magic \u2728",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_010.png"
+      },
+      {
+        "step_number": 11,
+        "total_steps": 11,
+        "tooltip_text": "\u2b07\ufe0f",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_011.png"
+      },
+      {
+        "step_number": 12,
+        "total_steps": 12,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_012.png"
+      },
+      {
+        "step_number": 13,
+        "total_steps": 13,
+        "tooltip_text": "\u26a1Action executedNow that the issue has been sent for remediation, CyberArk identity security controls will be applied to any user in the BD Tech group when accessing the \"Data Scientist\" role.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_013.png"
+      },
+      {
+        "step_number": 14,
+        "total_steps": 14,
+        "tooltip_text": "Did it work, though?Let's check. Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_014.png"
+      },
+      {
+        "step_number": 15,
+        "total_steps": 15,
+        "tooltip_text": "We've logged in as a user from the BD Tech Group (after completing strong multi-factor authentication, of course).",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_015.png"
+      },
+      {
+        "step_number": 16,
+        "total_steps": 16,
+        "tooltip_text": "Now we'll connect to AWS Identity Center via Secure Cloud Access.",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_016.png"
+      },
+      {
+        "step_number": 17,
+        "total_steps": 17,
+        "tooltip_text": "\u2705 Session control\u2705 Session monitoring\u2705 Session protectionActivating...",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_017.png"
+      },
+      {
+        "step_number": 18,
+        "total_steps": 18,
+        "tooltip_text": "Locate the permission set for which the secure cloud access policy was recently created by Wiz. Then, hover and click \"connect\".",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_018.png"
+      },
+      {
+        "step_number": 19,
+        "total_steps": 19,
+        "tooltip_text": "By clicking connect, the data scientist role will be dynamically provisioned and deprovisioned upon this connection, ensuring zero standing privileges when connected to the AWS Identity Center.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_019.png"
+      },
+      {
+        "step_number": 20,
+        "total_steps": 20,
+        "tooltip_text": "When connected to the AWS Identity Center, we can see that the user can assume the data scientist role.",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_020.png"
+      },
+      {
+        "step_number": 21,
+        "total_steps": 21,
+        "tooltip_text": "\ud83d\udd12 Access SecuredThe user's privileges have been escalated to the Data Scientist role, and, as you can see, the user has no permissions to services like AWS Health and Cost data.Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_021.png"
+      },
+      {
+        "step_number": 22,
+        "total_steps": 22,
+        "tooltip_text": "Meanwhile, back in the Wiz platform...As you can see, the Secure Cloud Access policy was successfully created \ud83c\udf89Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_022.png"
+      },
+      {
+        "step_number": 23,
+        "total_steps": 23,
+        "tooltip_text": "And that is identity security\u2013at the scale and speed of your cloud development.Download now",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_023.png"
+      },
+      {
+        "step_number": 24,
+        "total_steps": 24,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/CyberArk/step_024.png"
+      }
+    ]
+  },
+  {
+    "name": "Huntress",
+    "showcase_url": "https://www.storylane.io/customer-showcase/huntress",
+    "demo_url": "https://tour.huntress.com/demo/emj3ig0ckzno?embed=inline",
+    "live_preview_url": "https://www.huntress.com/why-huntress/product-demo-center",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 2,
+    "steps_captured": 2,
+    "classification": {
+      "type": "Click-Through / Minimal Guidance",
+      "overall_score": 2,
+      "logic_score": 1,
+      "emotion_score": 2,
+      "credibility_score": 1,
+      "narrative_flow_score": 1,
+      "copy_quality_score": 3,
+      "summary": "This is a self-guided exploration demo with minimal narrative structure. Step 1 provides a welcome message and explains clickable elements, while Step 2 appears to be either empty or missing tooltip text. There is no clear problem statement, outcome promise, or storytelling arc.",
+      "strengths": [
+        "Clear explanation of interactive mechanics (blue = clickable)",
+        "Acknowledges that examples are included (incident and remediation)",
+        "Positions Huntress Managed SIEM as novel/early-access"
+      ],
+      "weaknesses": [
+        "No clear problem or value proposition stated upfront",
+        "No persona targeting or role-specific messaging",
+        "Step 2 tooltip is completely empty or missing",
+        "No specific proof, metrics, customer evidence, or credibility elements",
+        "Minimal copy guidance \u2014 feels more like a navigation prompt than a story",
+        "No features connected to a single outcome",
+        "Generic language ('real-world incident') without specificity",
+        "No narrative arc: problem \u2192 solution \u2192 value",
+        "Relies entirely on self-guided exploration rather than guided storytelling"
+      ],
+      "narrative_arc": "Opening: Generic welcome with navigation instructions. Middle: Implied exploration of detection, reporting, and incident/remediation examples. Closing: None \u2014 the story ends with the call to action to explore.",
+      "persona_targeting": "None. The demo is entirely generic. Uses 'you' broadly without distinguishing between IT ops, security teams, CISOs, or other roles. No acknowledgement of different stakeholder concerns.",
+      "proof_elements": "None present. No customer logos, testimonials, metrics, before/after data, or specific performance claims. 'Real-world incident' is mentioned but not substantiated.",
+      "recommendation": "Rewrite the opening to include a clear hook that answers: 'What problem does Huntress solve?' and 'Why should I care?' Example: 'Huntress detects threats that slip past your firewall. See how [ROLE] found a breach in minutes, not days.' Then structure the clickable elements as a guided path (not free exploration) that builds from threat detection \u2192 investigation \u2192 remediation, with at least one real metric or customer proof point embedded.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 1,
+        "tooltip_text": "Welcome to the Huntress Demo!Feel free to click around this self-guided demo; anything highlighted in blue is clickable:Clicking on product icons gives you insight into what Huntress detects and reportsThe incident and remediation examples give you an idea of what you would see in a real-world incidentBe one of the first to see Huntress Managed SIEM in actionNext",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Huntress/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 2,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Huntress/step_002.png"
+      }
+    ]
+  },
+  {
+    "name": "Outreach",
+    "showcase_url": "https://www.storylane.io/customer-showcase/outreach",
+    "demo_url": "https://demo.outreach.io/demo/xcoxotjhrinf",
+    "live_preview_url": "https://www.outreach.io/solutions/prospect-manage-accounts#storylane",
+    "category": "",
+    "is_accessible": true,
+    "is_gated": false,
+    "error": "",
+    "total_steps": 16,
+    "steps_captured": 16,
+    "classification": {
+      "type": "Needs Improvement \u2014 Feature Dump (Weak Logic)",
+      "overall_score": 4,
+      "logic_score": 3,
+      "emotion_score": 3,
+      "credibility_score": 2,
+      "narrative_flow_score": 4,
+      "copy_quality_score": 4,
+      "summary": "Outreach's demo walks through 16 features spanning account management, sequencing, task prioritization, call coaching, and manager analytics. While each feature is described, they lack a connecting thread\u2014the demo feels like a capability showcase rather than a cohesive story about solving a specific sales problem and driving measurable outcomes.",
+      "strengths": [
+        "Opens with a clear intent statement: 'grow, organize, and manage their book of business & find every qualified opportunity'",
+        "Covers both seller and manager workflows, showing breadth of audience",
+        "Uses specific UI references (Smart View, Smart Account Plans, 360 View, Content Cards, Sentiment Analysis) which feel concrete",
+        "Logical sequence flow: account targeting \u2192 planning \u2192 prospecting \u2192 execution \u2192 coaching \u2192 analytics"
+      ],
+      "weaknesses": [
+        "16 steps is too long and dilutes impact\u2014no feature clustering or prioritization",
+        "No specific numerical claims or evidence (no 'increase reply rates by X%', 'reduce time spent by Y%', etc.)",
+        "Generic language throughout: 'help teams grow', 'maximize reply rates', 'increase success rate'\u2014these are promises, not proofs",
+        "No customer logos, testimonials, or before/after comparisons",
+        "Persona messaging is split between sellers and managers (steps 1-10 vs 11-15) but neither path is deeply persona-targeted\u2014uses generic stakeholder language",
+        "No acknowledgment of specific seller pain points (e.g., pipeline shortfall, low reply rates, manual data entry) or manager challenges (e.g., coaching at scale, identifying top performers)",
+        "Missing a single, compelling outcome\u2014instead lists many things the product does",
+        "Copy lacks specificity: 'Coach sellers to reach out to your highest value prospects' doesn't explain the concrete impact"
+      ],
+      "narrative_arc": "Opening: 'Outreach helps teams grow and manage their book of business.' Middle: Feature march\u2014account identification \u2192 planning \u2192 sequencing \u2192 task management \u2192 call coaching \u2192 meeting booking \u2192 manager reporting \u2192 sentiment analysis. Closing: None\u2014demo ends abruptly with no summary of value or call to action. The arc lacks a problem hook and a payoff moment.",
+      "persona_targeting": "Weakly targeted to two personas (seller and manager) but without differentiation. Sellers see prospecting features (steps 1-10), managers see reporting/coaching (steps 11-15). However, there's no role-specific messaging about their unique pain points, success metrics, or risks. Copy remains generic for both personas.",
+      "proof_elements": "None. No numbers, no customer proof, no before/after comparisons, no testimonials, no logos. Descriptions are feature-focused and vague ('maximize reply rates', 'increase success rate', 'help you execute tasks efficiently').",
+      "recommendation": "Narrow the demo to 5-7 steps and anchor it to ONE measurable outcome: 'Increase qualified pipeline meetings by X% in Y weeks.' Cluster features under that outcome (e.g., Account Targeting + Sequencing = More Qualified Prospects; Task Prioritization + Call Coaching = Higher Close Rates; Manager Analytics = Better Coaching Decisions). Add one specific proof point\u2014e.g., 'customers using Outreach's sequencing + sentiment analysis increase first-response rates by 34%' or a customer testimonial from a sales leader. Finish with a clear value summary tied back to the opening promise.",
+      "_model": "Haiku",
+      "_mode": "fast"
+    },
+    "steps": [
+      {
+        "step_number": 1,
+        "total_steps": 16,
+        "tooltip_text": "Prospect & Manage AccountsIn this tour, we\u2019ll walk through how Outreach helps teams grow, organize, and manage their book of business & find every qualified opportunity.1/16NextMade with\u00a0\u00a0Storylane",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_001.png"
+      },
+      {
+        "step_number": 2,
+        "total_steps": 16,
+        "tooltip_text": "Identify & prioritize accounts and contacts with similar attributes to your target customers to execute a personalized prospecting strategy at scale.2/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_002.png"
+      },
+      {
+        "step_number": 3,
+        "total_steps": 16,
+        "tooltip_text": "Right from an Account Smart View, you can identify accounts that need more attention and drill in to build a prospecting plan. Here you can see it\u2019s probably time to send Dell an email based on a lack of activity.3/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_003.png"
+      },
+      {
+        "step_number": 4,
+        "total_steps": 16,
+        "tooltip_text": "Using Smart Account Plans, your account team can build an account based sales strategy with visibility across prospecting and account management teams.4/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_004.png"
+      },
+      {
+        "step_number": 5,
+        "total_steps": 16,
+        "tooltip_text": "Use sequences tailored to your various target audiences to ensure you\u2019re reaching the right people with the most effective message.\u00a05/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_005.png"
+      },
+      {
+        "step_number": 6,
+        "total_steps": 16,
+        "tooltip_text": "Edit sequence content and steps based on what you know about your prospect to ensure you personalize your message and maximize reply rates.6/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_006.png"
+      },
+      {
+        "step_number": 7,
+        "total_steps": 16,
+        "tooltip_text": "Outreach\u2019s 360 View helps you execute tasks efficiently and effectively by prioritizing high-impact activities, such as notifying you of new inbound leads or surfacing tasks with leads and contacts likely to convert to the top of your list.7/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_007.png"
+      },
+      {
+        "step_number": 8,
+        "total_steps": 16,
+        "tooltip_text": "Automated progression of tasks help sellers engage more efficiently to generate qualified pipeline.8/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_008.png"
+      },
+      {
+        "step_number": 9,
+        "total_steps": 16,
+        "tooltip_text": "When you\u2019re on a call with a prospect, live Content Cards use AI to coach in real-time and help you increase your success rate in booking meetings.9/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_009.png"
+      },
+      {
+        "step_number": 10,
+        "total_steps": 16,
+        "tooltip_text": "And when a prospect agrees to next steps, you can generate a meeting in one click.\u00a010/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_010.png"
+      },
+      {
+        "step_number": 11,
+        "total_steps": 16,
+        "tooltip_text": "For managers, Outreach helps you focus your sellers on activities that are most effective for generating pipeline.11/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_011.png"
+      },
+      {
+        "step_number": 12,
+        "total_steps": 16,
+        "tooltip_text": "In the Team Performance report, you can review prospects contacted to identify trends and coach sellers to reach out to your highest value prospects.12/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_012.png"
+      },
+      {
+        "step_number": 13,
+        "total_steps": 16,
+        "tooltip_text": "Additionally, you can see trends in email sentiment to coach pipeline-generating teams to reach the right personas with the right message.13/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_013.png"
+      },
+      {
+        "step_number": 14,
+        "total_steps": 16,
+        "tooltip_text": "Outreach\u2019s Sentiment Analysis groups responses and objections so you can coach your team on follow-up, messaging, disqualification, and targeting.14/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_014.png"
+      },
+      {
+        "step_number": 15,
+        "total_steps": 16,
+        "tooltip_text": "Managers and RevOps teams can analyze sequence content and build successful campaigns around messages that are driving the most meetings.15/16Next",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_015.png"
+      },
+      {
+        "step_number": 16,
+        "total_steps": 16,
+        "tooltip_text": "",
+        "screenshot": "/Users/prashil3k/Documents/Claude Code/storylane-demo-classifier/screenshots/Outreach/step_016.png"
+      }
+    ]
+  },
+  {
+    "name": "Gong",
+    "showcase_url": "https://www.storylane.io/customer-showcase/gong-demo",
+    "demo_url": "",
+    "live_preview_url": "https://www.gong.io/platform-tour/",
+    "category": "",
+    "is_accessible": false,
+    "is_gated": false,
+    "error": "No demo iframe found on showcase page",
+    "total_steps": 0,
+    "steps_captured": 0,
+    "classification": {
+      "type": "inaccessible",
+      "reason": "No demo iframe found on showcase page"
+    },
+    "steps": []
+  },
+  {
+    "name": "Bitdefender",
+    "showcase_url": "https://www.storylane.io/customer-showcase/bitdefender",
+    "demo_url": "",
+    "live_preview_url": "https://www.bitdefender.com/en-us/business/demo-zone",
+    "category": "",
+    "is_accessible": false,
+    "is_gated": false,
+    "error": "No demo iframe found on showcase page",
+    "total_steps": 0,
+    "steps_captured": 0,
+    "classification": {
+      "type": "inaccessible",
+      "reason": "No demo iframe found on showcase page"
+    },
+    "steps": []
+  }
+]
